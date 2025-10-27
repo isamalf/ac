@@ -48,6 +48,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            text-align: center;
         }
 
         .loading-logo .typed-text {
@@ -302,7 +304,7 @@
             }
             
             .nav-links {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 15px;
             }
             
@@ -317,6 +319,11 @@
             .logo {
                 margin-bottom: 40px;
             }
+            
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -330,6 +337,16 @@
             
             .metric-value {
                 font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 5px 10px;
             }
         }
     </style>
@@ -391,6 +408,10 @@
                     i++;
                     setTimeout(type, speed);
                 } else if (callback) {
+                    // Remove the cursor after typing is complete
+                    setTimeout(() => {
+                        element.innerHTML = text;
+                    }, 500);
                     callback();
                 }
             }
