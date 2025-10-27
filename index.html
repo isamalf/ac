@@ -206,6 +206,7 @@
             padding: 8px 16px;
             border: 1px solid #333333;
             border-radius: 2px;
+            cursor: pointer;
         }
 
         .nav-link:hover {
@@ -220,6 +221,140 @@
             color: #666666;
             max-width: 600px;
             line-height: 1.4;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #000000;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #aaaaaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close-button:hover {
+            color: #ffffff;
+        }
+
+        .modal-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #111111;
+            border: 1px solid #333333;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            border-radius: 2px;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #555555;
+        }
+
+        .submit-button {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .success-message {
+            display: none;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Research Modal */
+        .research-content {
+            color: #cccccc;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .research-content h3 {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px 0 10px 0;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        .research-content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .research-content li {
+            margin-bottom: 8px;
         }
 
         /* Animations */
@@ -280,6 +415,10 @@
             .nav-links {
                 gap: 20px;
             }
+            
+            .modal-content {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -324,6 +463,10 @@
                 font-size: 0.8rem;
                 padding: 6px 12px;
             }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -365,7 +508,7 @@
         <div class="container">
             <div class="logo">
                 <h1 class="main-title">ALF Capital & Strategies</h1>
-                <p class="subtitle">Research-Driven Investment Firm Focused On Algorthmic Strategies</p>
+                <p class="subtitle">RESEARCH-DRIVEN INVESTMENT FIRM FOCUSED ON ALGORTHMIC STRATEGIES</p>
             </div>
 
             <div class="metrics">
@@ -390,10 +533,67 @@
 
         <footer class="footer">
             <div class="nav-links">
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#research" class="nav-link">Research</a>
+                <a class="nav-link" id="contactLink">Contact</a>
+                <a class="nav-link" id="researchLink">Research</a>
             </div>
         </footer>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeContactModal">&times;</button>
+            <h2 class="modal-title">Contact Us</h2>
+            <form id="contactForm" action="https://formspree.io/f/xrboeaja" method="POST">
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <input class="form-input" type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input class="form-input" type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="company">Company (Optional)</label>
+                    <input class="form-input" type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-textarea" id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+                <div class="success-message" id="successMessage">
+                    Thank you for your message. We will respond shortly.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Research Modal -->
+    <div class="modal" id="researchModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeResearchModal">&times;</button>
+            <h2 class="modal-title">Research Division</h2>
+            <div class="research-content">
+                <p>Our quantitative research focuses on developing sophisticated algorithmic strategies for digital asset management.</p>
+                
+                <h3>Research Areas</h3>
+                <ul>
+                    <li>Algorithmic trading strategies for digital assets</li>
+                    <li>Market microstructure analysis</li>
+                    <li>Portfolio optimization techniques</li>
+                    <li>Risk management frameworks</li>
+                    <li>Blockchain data analytics</li>
+                    <li>Cross-asset correlation studies</li>
+                </ul>
+                
+                <h3>Publications</h3>
+                <p>White papers and research reports are available to accredited investors upon request. Our team regularly publishes insights on market trends, volatility patterns, and algorithmic approaches to digital asset investment.</p>
+                
+                <h3>Methodology</h3>
+                <p>We employ rigorous quantitative methods including machine learning, statistical arbitrage, and time-series analysis to develop proprietary trading models with proven risk-adjusted returns.</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -475,19 +675,73 @@
             updateSPYReturns();
         }
 
-        // Modal functionality for Contact and Research
+        // Modal functionality
         function setupModals() {
-            const contactLink = document.querySelector('a[href="#contact"]');
-            const researchLink = document.querySelector('a[href="#research"]');
+            const contactLink = document.getElementById('contactLink');
+            const researchLink = document.getElementById('researchLink');
+            const contactModal = document.getElementById('contactModal');
+            const researchModal = document.getElementById('researchModal');
+            const closeContactModal = document.getElementById('closeContactModal');
+            const closeResearchModal = document.getElementById('closeResearchModal');
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
             
-            contactLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('For inquiries, please contact our offices:\n\nEmail: contact@alfcapital.com\nTelephone: +1 (212) 555-0100\nAddress: 500 Park Avenue, New York, NY');
+            // Open modals
+            contactLink.addEventListener('click', () => {
+                contactModal.style.display = 'flex';
             });
             
-            researchLink.addEventListener('click', (e) => {
+            researchLink.addEventListener('click', () => {
+                researchModal.style.display = 'flex';
+            });
+            
+            // Close modals
+            closeContactModal.addEventListener('click', () => {
+                contactModal.style.display = 'none';
+            });
+            
+            closeResearchModal.addEventListener('click', () => {
+                researchModal.style.display = 'none';
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', (event) => {
+                if (event.target === contactModal) {
+                    contactModal.style.display = 'none';
+                }
+                if (event.target === researchModal) {
+                    researchModal.style.display = 'none';
+                }
+            });
+            
+            // Handle form submission
+            contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                alert('ALF Research Division\n\nOur quantitative research focuses on:\n• Algorithmic trading strategies for digital assets\n• Market microstructure analysis\n• Portfolio optimization techniques\n• Risk management frameworks\n\nWhite papers available to accredited investors upon request.');
+                
+                const formData = new FormData(contactForm);
+                
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        successMessage.style.display = 'block';
+                        contactForm.reset();
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                            contactModal.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        alert('There was an error sending your message. Please try again.');
+                    }
+                } catch (error) {
+                    alert('There was an error sending your message. Please try again.');
+                }
             });
         }
 
