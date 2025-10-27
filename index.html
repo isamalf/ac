@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALF Capital & Strategies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -38,7 +38,7 @@
         }
 
         .loading-logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 3.5rem;
             font-weight: 500;
             letter-spacing: 3px;
@@ -72,35 +72,20 @@
             animation: loading 7s ease-in-out forwards;
         }
 
-        .matrix-code {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            pointer-events: none;
-        }
-
-        .code-char {
-            position: absolute;
-            color: #4CAF50;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            animation: fall linear infinite;
-        }
-
         /* Main Content */
         .main-content {
             opacity: 0;
             transition: opacity 1s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
-            min-height: 100vh;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -109,11 +94,11 @@
         }
 
         .logo {
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .main-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 3.5rem;
             font-weight: 500;
             letter-spacing: 1.5px;
@@ -145,7 +130,7 @@
             display: flex;
             justify-content: center;
             gap: 60px;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
             flex-wrap: wrap;
         }
 
@@ -197,6 +182,7 @@
             padding: 40px 0;
             width: 100%;
             border-top: 1px solid #1a1a1a;
+            margin-top: auto;
         }
 
         .nav-links {
@@ -206,35 +192,24 @@
         }
 
         .nav-link {
-            color: #cccccc;
+            color: #ffffff;
             text-decoration: none;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: color 0.3s ease;
             position: relative;
-            font-weight: 300;
+            font-weight: 400;
             font-family: 'Inter', sans-serif;
+            padding: 8px 16px;
+            border: 1px solid #333333;
+            border-radius: 2px;
         }
 
         .nav-link:hover {
             color: #ffffff;
-            font-weight: 400;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #ffffff;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
+            background-color: #1a1a1a;
+            border-color: #555555;
         }
 
         .disclaimer {
@@ -249,13 +224,6 @@
         @keyframes loading {
             0% { width: 0%; }
             100% { width: 100%; }
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-100px); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
         }
 
         @keyframes fadeIn {
@@ -298,11 +266,24 @@
             .metric-divider {
                 display: none;
             }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
         }
 
         @media (max-width: 480px) {
             .main-title {
                 font-size: 2rem;
+                line-height: 1.2;
             }
             
             .loading-logo {
@@ -311,16 +292,44 @@
             
             .metrics {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
+                margin-bottom: 60px;
+            }
+            
+            .metric-card {
+                min-width: 100%;
+                padding: 15px;
             }
             
             .nav-links {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .container {
-                padding: 0 20px;
+                padding: 0 15px;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .loading-logo {
+                font-size: 1.8rem;
+            }
+            
+            .metric-value {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -332,7 +341,6 @@
         <div class="loading-bar-container">
             <div class="loading-bar"></div>
         </div>
-        <div class="matrix-code" id="matrixCode"></div>
     </div>
 
     <!-- Main Content -->
@@ -340,7 +348,7 @@
         <div class="container">
             <div class="logo">
                 <h1 class="main-title">ALF Capital & Strategies</h1>
-                <p class="subtitle">Research-driven investment firm focused on algorithmic strategies</p>
+                <p class="subtitle">Research-Driven Investment Firm Focused On Algorthmic Strategies</p>
             </div>
 
             <div class="metrics">
@@ -388,22 +396,6 @@
             }
             
             type();
-        }
-
-        // Matrix-style falling code animation
-        function createMatrixEffect() {
-            const matrixContainer = document.getElementById('matrixCode');
-            const chars = '01アルゴリズムALF';
-            
-            for (let i = 0; i < 50; i++) {
-                const charElement = document.createElement('div');
-                charElement.classList.add('code-char');
-                charElement.textContent = chars[Math.floor(Math.random() * chars.length)];
-                charElement.style.left = `${Math.random() * 100}%`;
-                charElement.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                charElement.style.animationDelay = `${Math.random() * 5}s`;
-                matrixContainer.appendChild(charElement);
-            }
         }
 
         // Simulate ALF Capital returns with more realistic patterns
@@ -480,9 +472,6 @@
 
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            // Create the matrix effect
-            createMatrixEffect();
-            
             // Start the typing effect
             const typedLogo = document.getElementById('typedLogo');
             typeWriter(typedLogo, 'ALF CAPITAL & STRATEGIES', 100);
