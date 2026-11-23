@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Access — Beardslee St. Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <div class="auth-header">
+            <a href="/" aria-label="Return to Beardslee St. Research">
+                <img src="/static/img/beardslee-logo-white.png" alt="Beardslee St. Research" class="auth-logo">
+            </a>
+        </div>
+
+        <section class="auth-card" aria-labelledby="authTitle">
+            <div class="auth-meta">
+                <span class="auth-kicker">INTERNAL TELEMETRY</span>
+                <h1 id="authTitle">Dashboard Sign In</h1>
+                <p class="auth-subtitle" id="authSubtitle">
+                    Authorized personnel only. Enter your registered email address to continue.
+                </p>
+            </div>
+
+            <div class="auth-alert" id="authAlert" role="alert" hidden></div>
+
+            <!-- Step 1: Email Verification -->
+            <form id="emailForm" class="auth-form" autocomplete="on" novalidate>
+                <div class="field">
+                    <label for="emailInput">Email address</label>
+                    <input
+                        id="emailInput"
+                        name="email"
+                        type="email"
+                        inputmode="email"
+                        autocomplete="username"
+                        placeholder="name@domain.com"
+                        required
+                        autofocus
+                    >
+                </div>
+                <button type="submit" class="btn-primary" id="emailSubmitBtn">Next</button>
+            </form>
+
+            <!-- Step 2: Password Verification (unlocked strictly after server email check) -->
+            <form id="passwordForm" class="auth-form" autocomplete="on" novalidate hidden>
+                <div class="verified-email-row">
+                    <span class="verified-email-value" id="verifiedEmailText"></span>
+                    <button type="button" class="btn-text" id="changeEmailBtn">Change</button>
+                </div>
+                <div class="field">
+                    <label for="passwordInput">Password</label>
+                    <input
+                        id="passwordInput"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        placeholder="Enter password"
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn-primary" id="passwordSubmitBtn">Sign In</button>
+            </form>
+
+            <div class="auth-footer-note">
+                <a href="/" class="back-link">&larr; Back to main site</a>
+                <span>No public registration</span>
+            </div>
+        </section>
+
+        <footer class="legal-mini">
+            &copy; 2026 Beardslee St. Research &middot; Restricted internal access. Unauthorized access attempts are logged.
+        </footer>
+    </main>
+
+    <script src="/static/js/login.js"></script>
+</body>
+</html>
